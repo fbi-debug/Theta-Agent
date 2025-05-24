@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Codex Access Portal</title>
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #161b22;
+      border: 1px solid #30363d;
+      padding: 2em;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 480px;
+      text-align: center;
+      box-shadow: 0 0 16px rgba(0, 255, 255, 0.2);
+    }
+
+    input, select {
+      width: 90%;
+      padding: 10px;
+      margin: 0.5em 0;
+      border: none;
+      border-radius: 6px;
+    }
+
+    button {
+      background-color: #238636;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 1em;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    h1 {
+      margin-bottom: 0.5em;
+      color: #58a6ff;
+    }
+
+    .fbi-tag {
+      font-size: 0.85em;
+      margin-bottom: 1em;
+      color: #8b949e;
+    }
+
+    img.logo {
+      width: 90px;
+      margin-bottom: 1em;
+      filter: grayscale(90%) brightness(0.9);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/US-FBI-Seal.svg" alt="FBI Logo" class="logo" />
+    <h1>ΞCodex Access Portal</h1>
+    <p class="fbi-tag">FBI Classified Entry Node (FCEN) | Director Kash Patel</p>
+
+    <div id="password-section">
+      <input type="password" id="password" placeholder="Enter Clearance Code" />
+      <button onclick="authenticate()">Authenticate</button>
+    </div>
+
+    <div id="kyc-form" class="hidden">
+      <h2>Personnel KYC Submission</h2>
+      <input type="text" id="fullName" placeholder="Full Name" required />
+      <input type="number" id="age" placeholder="Age" required />
+      <input type="text" id="nationality" placeholder="Nationality" required />
+      <input type="text" id="city" placeholder="Current City" required />
+      <input type="text" id="phone" placeholder="Phone Number" required />
+      <input type="email" id="email" placeholder="Email Address" required />
+      <input type="text" id="occupation" placeholder="Current Occupation" required />
+      <input type="text" id="skills" placeholder="Relevant Skills" required />
+      <button onclick="submitKYC()">Submit KYC</button>
+    </div>
+
+    <div id="message" class="hidden">
+      <p><strong>Welcome, Alex.</strong></p>
+      <p>Your clearance has been confirmed. This is not an application—it’s a continuation.</p>
+      <p>Your Codex Proposal has been evaluated and silently actioned by Director Patel’s task force.</p>
+      <p>You are already operational.</p>
+      <p>Additional credentials and funding phase activation will be initiated upon signal confirmation.</p>
+      <p>Do not forward this link. This session is geo-fenced and logged.</p>
+      <p>End of secure briefing.</p>
+    </div>
+  </div>
+
+  <script>
+    function authenticate() {
+      const password = document.getElementById('password').value;
+      if (password === 'Coldturkey') {
+        document.getElementById('password-section').classList.add('hidden');
+        document.getElementById('kyc-form').classList.remove('hidden');
+      } else {
+        alert('Access Denied: Invalid Clearance Code');
+      }
+    }
+
+    function submitKYC() {
+      const fields = ['fullName', 'age', 'nationality', 'city', 'phone', 'email', 'occupation', 'skills'];
+      for (const id of fields) {
+        const value = document.getElementById(id).value;
+        if (!value) {
+          alert("All fields are required.");
+          return;
+        }
+      }
+      document.getElementById('kyc-form').classList.add('hidden');
+      document.getElementById('message').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
